@@ -1,0 +1,10 @@
+services:
+  openfoam:
+    image: ros2-docker
+    build: .
+    container_name: ros2
+
+    stdin_open: true
+    tty: true
+
+    command: zsh
