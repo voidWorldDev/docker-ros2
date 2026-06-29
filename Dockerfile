@@ -2,16 +2,6 @@ FROM ros:humble
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-
-# Packages
-RUN apt update && \
-    apt install -y \
-        gnupg \
-        lsb-release \
-        software-properties-common \
-RUN apt-get update && \
-    apt-get install -y nala
-
 # Packages
 RUN apt-get update && \
     apt-get install -y nala
@@ -20,6 +10,8 @@ RUN apt-get update && \
 RUN nala update && \
     nala install -y \
         wget \
+        gnupg \
+        lsb-release \
         curl \
         git \
         software-properties-common \
