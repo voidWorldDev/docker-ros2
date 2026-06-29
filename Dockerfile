@@ -13,6 +13,10 @@ RUN apt-get update && \
     apt-get install -y nala
 
 # Packages
+RUN apt-get update && \
+    apt-get install -y nala
+
+# Packages
 RUN nala update && \
     nala install -y \
         wget \
@@ -57,4 +61,4 @@ RUN RUNZSH=no \
 RUN chsh -s /usr/bin/zsh root
 
 # Start container in zsh
-C
+CMD ["/usr/bin/zsh"]
