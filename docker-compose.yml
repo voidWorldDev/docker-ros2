@@ -1,5 +1,5 @@
 services:
-  openfoam:
+  ros_dev:
     image: ros2-docker
     build: .
     container_name: ros2
