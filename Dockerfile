@@ -2,7 +2,13 @@ FROM ros:humble
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install nala first
+
+# Packages
+RUN apt update && \
+    apt install -y \
+        gnupg \
+        lsb-release \
+        software-properties-common \
 RUN apt-get update && \
     apt-get install -y nala
 
@@ -12,18 +18,22 @@ RUN nala update && \
         wget \
         curl \
         git \
-        gnupg \
-        lsb-release \
         software-properties-common \
         sudo \
         nano \
-        neovim \
         tmux \
         zoxide \
         zsh \
         build-essential && \
     rm -rf /var/lib/apt/lists/*
 
+
+ENV PATH="/opt/nvim/bin:${PATH}"
+
+RUN curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz && \
+    tar xzf nvim-linux-x86_64.tar.gz && \
+    mv nvim-linux-x86_64 /opt/nvim && \
+    rm nvim-linux-x86_64.tar.gz
 # Neovim config
 RUN mkdir -p /root/.config && \
     git clone https://github.com/voidWorldDev/nvimDotfiles.git /root/.config/nvim
@@ -47,4 +57,4 @@ RUN RUNZSH=no \
 RUN chsh -s /usr/bin/zsh root
 
 # Start container in zsh
-CMD ["/usr/bin/zsh"]
+C
